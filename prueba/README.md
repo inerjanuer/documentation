@@ -1,259 +1,245 @@
-# Pandoc document template
-
-## Description
-
-This repository contains a simple template for building
-[Pandoc](http://pandoc.org/) documents; Pandoc is a suite of tools to compile
-markdown files into readable files (PDF, EPUB, HTML...).
-
-## Usage
-
-### Installing
-
-In order to use this makefile you will need to make sure that the following
-dependencies are installed on your system:
-  - GNU make
-  - Pandoc
-  - LuaLaTeX
-  - DejaVu Sans fonts
-
-### Folder structure
-
-Here's a folder structure for a Pandoc document:
-
-```
-my-document/     # Root directory.
-|- build/        # Folder used to store builded (output) files.
-|- src/          # Markdowns files; one for each chapter.
-|- images/       # Images folder.
-|- metadata.yml  # Metadata content (title, author...).
-|- Makefile      # Makefile used for building our documents.
-```
-
-### Setup generic data
-
-Edit the *metadata.yml* file to set configuration data:
-
-```yml
 ---
-title: My document title
-author: Ralph Huwiler
-rights:  Creative Commons Attribution 4.0 International
-language: en-US
-tags: [document, my-document, etc]
-abstract: |
-  Your summary text.
+__Advertisement :)__
+
+- __[pica](https://nodeca.github.io/pica/demo/)__ - high quality and fast image
+  resize in browser.
+- __[babelfish](https://github.com/nodeca/babelfish/)__ - developer friendly
+  i18n with plurals support and easy syntax.
+
+You will like those projects!
+
 ---
+
+# h1 Heading 8-)
+## h2 Heading
+### h3 Heading
+#### h4 Heading
+##### h5 Heading
+###### h6 Heading
+
+
+## Horizontal Rules
+
+___
+
+---
+
+***
+
+
+## Typographic replacements
+
+Enable typographer option to see result.
+
+(c) (C) (r) (R) (tm) (TM) (p) (P) +-
+
+test.. test... test..... test?..... test!....
+
+!!!!!! ???? ,,  -- ---
+
+"Smartypants, double quotes" and 'single quotes'
+
+
+## Emphasis
+
+**This is bold text**
+
+__This is bold text__
+
+*This is italic text*
+
+_This is italic text_
+
+~~Strikethrough~~
+
+
+## Blockquotes
+
+
+> Blockquotes can also be nested...
+>> ...by using additional greater-than signs right next to each other...
+> > > ...or with spaces between arrows.
+
+
+## Lists
+
+Unordered
+
++ Create a list by starting a line with `+`, `-`, or `*`
++ Sub-lists are made by indenting 2 spaces:
+  - Marker character change forces new list start:
+    * Ac tristique libero volutpat at
+    + Facilisis in pretium nisl aliquet
+    - Nulla volutpat aliquam velit
++ Very easy!
+
+Ordered
+
+1. Lorem ipsum dolor sit amet
+2. Consectetur adipiscing elit
+3. Integer molestie lorem at massa
+
+
+1. You can use sequential numbers...
+1. ...or keep all the numbers as `1.`
+
+Start numbering with offset:
+
+57. foo
+1. bar
+
+
+## Code
+
+Inline `code`
+
+Indented code
+
+    // Some comments
+    line 1 of code
+    line 2 of code
+    line 3 of code
+
+
+Block code "fences"
+
+```
+Sample text here...
 ```
 
-You can find the list of all available keys on [this
-page](http://pandoc.org/MANUAL.html#extension-yaml_metadata_block).
+Syntax highlighting
 
-### Creating chapters
+``` js
+var foo = function (bar) {
+  return bar++;
+};
 
-Creating a new chapter is as simple as creating a new markdown file in the
-*src/* folder; you'll end up with something like this:
-
-```
-src/01-introduction.md
-src/02-installation.md
-src/03-usage.md
-src/04-references.md
+console.log(foo(5));
 ```
 
-Pandoc and Make will join them automatically ordered by name; that's why the
-numeric prefixes are being used.
+## Tables
 
-All you need to specify for each chapter at least one title:
+| Option | Description |
+| ------ | ----------- |
+| data   | path to data files to supply the data that will be passed into templates. |
+| engine | engine to be used for processing templates. Handlebars is the default. |
+| ext    | extension to be used for dest files. |
 
-```md
-# Introduction
+Right aligned columns
 
-This is the first paragraph of the introduction chapter.
+| Option | Description |
+| ------:| -----------:|
+| data   | path to data files to supply the data that will be passed into templates. |
+| engine | engine to be used for processing templates. Handlebars is the default. |
+| ext    | extension to be used for dest files. |
 
-## First
 
-This is the first subsection.
+## Links
 
-## Second
+[link text](http://dev.nodeca.com)
 
-This is the second subsection.
-```
+[link with title](http://nodeca.github.io/pica/demo/ "title text!")
 
-Each title (*#*) will represent a chapter, while each subtitle (*##*) will
-represent a chapter's section. You can use as many levels of sections as
-markdown supports.
+Autoconverted link https://github.com/nodeca/pica (enable linkify to see)
 
-#### Links between chapters
 
-Anchor links can be used to link chapters within the document:
+## Images
 
-```md
-// src/01-introduction.md
-# Introduction
+![Minion](https://octodex.github.com/images/minion.png)
+![Stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat")
 
-For more information, check the [Usage] chapter.
+Like links, Images also have a footnote style syntax
 
-// src/02-installation.md
-# Usage
+![Alt text][id]
 
-...
-```
+With a reference later in the document defining the URL location:
 
-If you want to rename the reference, use this syntax:
+[id]: https://octodex.github.com/images/dojocat.jpg  "The Dojocat"
 
-```md
-For more information, check [this](#usage) chapter.
-```
 
-Anchor names should be downcased, and spaces, colons, semicolons... should be
-replaced with hyphens. Instead of `Chapter title: A new era`, you have:
-`#chapter-title-a-new-era`.
+## Plugins
 
-#### Links between sections
+The killer feature of `markdown-it` is very effective support of
+[syntax plugins](https://www.npmjs.org/browse/keyword/markdown-it-plugin).
 
-It's the same as anchor links:
 
-```md
-# Introduction
+### [Emojies](https://github.com/markdown-it/markdown-it-emoji)
 
-## First
+> Classic markup: :wink: :crush: :cry: :tear: :laughing: :yum:
+>
+> Shortcuts (emoticons): :-) :-( 8-) ;)
 
-For more information, check the [Second] section.
+see [how to change output](https://github.com/markdown-it/markdown-it-emoji#change-output) with twemoji.
 
-## Second
 
-...
-```
+### [Subscript](https://github.com/markdown-it/markdown-it-sub) / [Superscript](https://github.com/markdown-it/markdown-it-sup)
 
-Or, with al alternative name:
+- 19^th^
+- H~2~O
 
-```md
-For more information, check [this](#second) section.
-```
 
-### Inserting objects
+### [\<ins>](https://github.com/markdown-it/markdown-it-ins)
 
-Text. That's cool. What about images and tables?
+++Inserted text++
 
-#### Insert an image
 
-Use Markdown syntax to insert an image with a caption:
+### [\<mark>](https://github.com/markdown-it/markdown-it-mark)
 
-```md
-![A cool seagull.](images/seagull.png)
-```
+==Marked text==
 
-Pandoc will automatically convert the image into a figure (image + caption).
 
-If you want to resize the image, you may use this syntax, available in Pandoc
-1.16:
+### [Footnotes](https://github.com/markdown-it/markdown-it-footnote)
 
-```md
-![A cool seagull.](images/seagull.png){ width=50% height=50% }
-```
+Footnote 1 link[^first].
 
-Also, to reference an image, use LaTeX labels:
+Footnote 2 link[^second].
 
-```md
-Please, admire the gloriousnes of Figure \ref{seagull_image}.
+Inline footnote^[Text of inline footnote] definition.
 
-![A cool seagull.\label{seagull_image}](images/seagull.png)
-```
+Duplicated footnote reference[^second].
 
-#### Insert a table
+[^first]: Footnote **can have markup**
 
-Use markdown table, and use the `Table: <Your table description>` syntax to add
-a caption:
+    and multiple paragraphs.
 
-```md
-| Index | Name |
-| ----- | ---- |
-| 0     | AAA  |
-| 1     | BBB  |
-| ...   | ...  |
+[^second]: Footnote text.
 
-Table: This is an example table.
-```
 
-If you want to reference a table, use LaTeX labels:
+### [Definition lists](https://github.com/markdown-it/markdown-it-deflist)
 
-```md
-Please, check Table /ref{example_table}.
+Term 1
 
-| Index | Name |
-| ----- | ---- |
-| 0     | AAA  |
-| 1     | BBB  |
-| ...   | ...  |
+:   Definition 1
+with lazy continuation.
 
-Table: This is an example table.\label{example_table}
-```
+Term 2 with *inline markup*
 
-#### Insert an equation
+:   Definition 2
 
-Wrap a LaTeX math equation between `$` delimiters for inline (tiny) formulas:
+        { some code, part of Definition 2 }
 
-```md
-This, $\mu = \sum_{i=0}^{N} \frac{x_i}{N}$, the mean equation, ...
-```
+    Third paragraph of definition 2.
 
-Pandoc will transform them automatically into images using online services.
+_Compact style:_
 
-If you want to center the equation instead of inlining it, use double `$$`
-delimiters:
+Term 1
+  ~ Definition 1
 
-```md
-$$\mu = \sum_{i=0}^{N} \frac{x_i}{N}$$
-```
+Term 2
+  ~ Definition 2a
+  ~ Definition 2b
 
-[Here](https://www.codecogs.com/latex/eqneditor.php)'s an online equation
-editor.
 
-### Output
+### [Abbreviations](https://github.com/markdown-it/markdown-it-abbr)
 
-This template uses *Makefile* to automatize the building process. Instead of
-using the *pandoc cli util*, we're going to use some *make* commands.
+This is HTML abbreviation example.
 
-#### Export to PDF
+It converts "HTML", but keep intact partial entries like "xxxHTMLyyy" and so on.
 
-Use this command:
+*[HTML]: Hyper Text Markup Language
 
-```sh
-make pdf
-```
+### [Custom containers](https://github.com/markdown-it/markdown-it-container)
 
-The generated file will be placed in *build/pdf*.
-
-Please, note that PDF file generation requires some extra dependencies (~ 800
-MB):
-
-```sh
-sudo apt-get install texlive-latex-base texlive-fonts-recommended texlive-latex-extra 
-```
-
-#### Export to EPUB
-
-Use this command:
-
-```sh
-make epub
-```
-
-The generated file will be placed in *build/epub*.
-
-#### Export to HTML
-
-Use this command:
-
-```sh
-make html
-```
-
-The generated file(s) will be placed in *build/html*.
-
-## References
-
-- [Pandoc](http://pandoc.org/)
-- [Pandoc Manual](http://pandoc.org/MANUAL.html)
-- [Wikipedia: Markdown](http://wikipedia.org/wiki/Markdown)
+::: warning
+*here be dragons*
+:::
