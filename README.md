@@ -1,5 +1,7 @@
 # Pandoc document template
 
+[Pagina 2](https://inerjanuer.github.io/prueba).
+
 ## Description
 
 This repository contains a simple template for building
