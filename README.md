@@ -1,6 +1,6 @@
 # Pandoc document template
 
-[Pagina 2](https://inerjanuer.github.io/prueba).
+[Pagina 2](/prueba).
 
 ## Description
 
